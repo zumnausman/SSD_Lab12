@@ -1,37 +1,37 @@
+
 pipeline {
-    agent any
-    options {
-        // Configure GitHub credentials ID
-        checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/zumnausman/SSD_Lab12.git', credentialsId: 'GitHubAccessToken']]])
+  agent any
+  stages {
+    stage('Build') {
+      steps {
+        echo 'Building..'
+        // Here you can define commands for your build
+      }
     }
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-                // Define build commands
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-                // Define test commands
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-                // Define deployment commands
-            }
-        }
+    stage('Test') {
+      steps {
+        echo 'Testing..'
+      // Here you can define commands for your tests
+      }
     }
-    post {
-        success {
-            echo 'Build and deployment successful!'
-            // Additional success actions
-        }
-        failure {
-            echo 'Build or deployment failed!'
-            // Additional failure actions
-        }
+    stage('Deploy') {
+      steps {
+        echo 'Deploying....'
+      // Here you can define commands for your deployment
+      }
     }
+ 
+  }
+  post {
+    // the conditions after build
+    always {
+      echo 'will run always'
+    }
+    failure {
+      echo 'failed condition'
+    }
+    success {
+      echo 'success condition'
+    }
+  }
 }
