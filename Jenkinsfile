@@ -1,4 +1,5 @@
 
+flag = false
 pipeline {
   agent any
   stages {
@@ -16,7 +17,7 @@ pipeline {
       }
       when{
           expression{
-            flag == false
+            flag == true
           }
         }
     }
