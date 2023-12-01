@@ -12,12 +12,13 @@ pipeline {
       steps {
         echo 'Testing..'
       // Here you can define commands for your tests
-        when{
+        
+      }
+      when{
           expression{
             flag == false
           }
         }
-      }
     }
     stage('Deploy') {
       steps {
