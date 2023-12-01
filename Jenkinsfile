@@ -1,27 +1,35 @@
 pipeline {
-  agent any
-  stages {
-    stage('Build') {
-      steps {
-        echo 'Building..'
-        // Here you can define commands for your build
-      }
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+                // Define build commands
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+                // Define test commands
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+                // Define deployment commands
+            }
+        }
     }
-    stage('Test') {
-      steps {
-        echo 'Testing..'
-        // Here you can define commands for your tests
-      }
+    post {
+        success {
+            echo 'Build and deployment successful!'
+            // Additional success actions
+        }
+        failure {
+            echo 'Build or deployment failed!'
+            // Additional failure actions
+        }
     }
-    stage('Deploy') {
-      steps {
-        echo 'Deploying....'
-        // Here you can define commands for your deployment
-      }
-    }
-  }
-  post {
-    // Define post-build actions here
-  }
 }
+
 
