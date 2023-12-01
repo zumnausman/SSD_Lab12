@@ -3,33 +3,44 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
-                // Define build commands
+                echo 'Building...'
+                // Add build commands here
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
-                // Define test commands
+                echo 'Testing...'
+                // Add test commands here
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
-                // Define deployment commands
+                echo 'Deploying...'
+                // Add deployment commands here
             }
         }
     }
+
     post {
         success {
-            echo 'Build and deployment successful!'
-            // Additional success actions
+            echo 'Pipeline succeeded!'
+            // Additional actions on success
         }
         failure {
-            echo 'Build or deployment failed!'
-            // Additional failure actions
+            echo 'Pipeline failed!'
+            // Additional actions on failure
         }
     }
+
+    options {
+        // Additional pipeline options, if needed
+    }
+
+    environment {
+        // Define environment variables, if needed
+    }
+
+    // Specify where to get the source code
+    // Replace 'GitHubAccessToken' with your actual credential ID
+    checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/zumnausman/SSD_Lab12.git', credentialsId: 'GitHubAccessToken']]])
 }
-
-
